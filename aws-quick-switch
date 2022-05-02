@@ -96,8 +96,7 @@ get_profile_by_index () {
 get_profiles
 
 
-if [ $INFO -eq 1 ]
-then
+if [ $INFO -eq 1 ]; then
     if [ $VERBOSE -eq 1 ]; then
         print_numbered_profiles source
     else
@@ -107,7 +106,8 @@ fi
 
 
 
-if [[ "$1" =~ ^[0-9]+$ ]] && [  "$1" -le "${#PROFILES[@]}" ]
-then
+if [[ "$1" =~ ^[0-9]+$ ]] && [  "$1" -le "${#PROFILES[@]}" ]; then
 	echo "export AWS_PROFILE=$(get_profile_by_index ${1})"
+elif [ $INFO -eq 0 ]; then
+    echo "export AWS_PROFILE=${1}"
 fi
