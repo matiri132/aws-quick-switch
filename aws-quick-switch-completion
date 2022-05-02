@@ -1,0 +1,29 @@
+#!/bin/bash
+
+################################################################################
+# CONFIG
+################################################################################
+AWS_CRED="/home/${USER}/.aws/credentials"
+AWS_CONF="/home/${USER}/.aws/config"
+
+################################################################################
+# FUNCTIONS
+################################################################################
+
+_aws_sp_completions()
+{
+  while read -r line; do
+		PROF_CREDENTIALS+=("${line}")
+	done < <(cat $AWS_CRED | grep -oP "(?<=\[).*(?=\])" )
+
+  while read -r line ; do  
+		PROF_CONFIG+=("${line}")
+  done < <(cat "$AWS_CONF" | grep -Po "(?<=\[profile ).*(?=\])")
+
+  PROFILES=( "${PROF_CONFIG[@]}" "${PROF_CREDENTIALS[@]}" )
+
+  IFS=$'\n' COMPREPLY=($(sort <<<"${PROFILES[*]}"))
+  unset IFS
+}
+
+complete -F _aws_sp_completions aws-sp

@@ -12,12 +12,21 @@ You can change some values in the script as:
 
 ```
   $ git clone https://github.com/matiri132/aws_quick_switch 
-  $ chmod +x install.sh 
-  $ ./install.sh 
+  $ chmod +x INSTALL.sh 
+  $ ./INSTALL.sh 
   $ source ./~zshrc
 ```
 
-Note: if you're not using zsh set the SOURCE variable in install.sh to your profile script.
+Note: if you're not using zsh set the SOURCE variable in INSTALL.sh to your profile script.
+
+### Autocompletion
+
+The INSTALL.sh script will ask you to install autocompletion. This *ONLY* works for zsh.
+Now with TAB you can choose your AWS profile. 
+
+### WARNING
+The instalation script writes directly to you zshrc file, also before the instalation makes a copy in this folder if you want to revert the changes.
+You can find the file *zshrc.backup*. After the instalation and check the script is working you can delete the file.
 
 ### Use
 
